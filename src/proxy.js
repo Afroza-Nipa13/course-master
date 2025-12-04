@@ -1,14 +1,20 @@
-import { NextResponse } from 'next/server'
- 
-// This function can be marked `async` if using `await` inside
-export function proxy(request) {
-  return NextResponse.redirect(new URL('/', request.url))
+import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+
+// Runs before any protected route loads
+export async function proxy(request) {
+  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+
+  // If no token → redirect to login
+  if (!token) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  // If logged in → allow access
+  return NextResponse.next();
 }
- 
-// Alternatively, you can use a default export:
-// export default function proxy(request) { ... }
- 
-// See "Matching Paths" below to learn more
+
+// Protect this path
 export const config = {
-  matcher: '/about/:path*',
-}
+  matcher: ["/courses/:path*"],
+};

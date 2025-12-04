@@ -2,26 +2,33 @@
 import React from "react";
 import Link from "next/link";
 import { FaHome, FaBook, FaPhoneAlt, FaInfoCircle, FaTachometerAlt } from "react-icons/fa";
-import { useSession, signOut } from "next-auth/react"; 
+import { useSession, signOut } from "next-auth/react";
 import { FaUserCircle } from "react-icons/fa";
 import Image from "next/image";
 
 export default function Navbar() {
-  // const { data: session } = useSession();
-  // const user = session?.user;
-  const user = {
-    name : "Nipa",
+  const { data: session } = useSession();
+  const user = session?.user;
+  console.log(user);
 
-  }
+  
+  const links = <>
+    <li><Link href="/"><FaHome /> Home</Link></li>
+    <li><Link href="/dashboard"><FaTachometerAlt /> Dashboard</Link></li>
+    <li><Link href="/courses"><FaBook /> All Courses</Link></li>
+    <li><Link href="/contact"><FaPhoneAlt /> Contact Us</Link></li>
+    <li><Link href="/about"><FaInfoCircle /> About Us</Link></li>
+  </>
+
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
-      
+
       {/* START */}
       <div className="navbar-start">
         {/* Mobile Dropdown */}
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className=" lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
               viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -34,11 +41,7 @@ export default function Navbar() {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10"
           >
-            <li><Link href="/"><FaHome /> Home</Link></li>
-            <li><Link href="/dashboard"><FaTachometerAlt /> Dashboard</Link></li>
-            <li><Link href="/courses"><FaBook /> All Courses</Link></li>
-            <li><Link href="/contact"><FaPhoneAlt /> Contact Us</Link></li>
-            <li><Link href="/about"><FaInfoCircle /> About Us</Link></li>
+            {links}
           </ul>
         </div>
 
@@ -51,11 +54,7 @@ export default function Navbar() {
       {/* CENTER (Desktop Menu) */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 gap-1 text-[15px] font-medium">
-          <li><Link href="/"><FaHome /> Home</Link></li>
-          <li><Link href="/dashboard"><FaTachometerAlt /> Dashboard</Link></li>
-          <li><Link href="/courses"><FaBook /> All Courses</Link></li>
-          <li><Link href="/contact"><FaPhoneAlt /> Contact Us</Link></li>
-          <li><Link href="/about"><FaInfoCircle /> About Us</Link></li>
+          {links}
         </ul>
       </div>
 
@@ -68,15 +67,15 @@ export default function Navbar() {
             {/* Avatar with Hover Name */}
             <div className="relative group cursor-pointer">
               <Image
-                // src={user.image || "/default-avatar.png"}
-                src={"/default-user.png"}
+                src={user.image || "/default-avatar.png"}
+                
                 alt="avatar"
                 className="w-10 h-10 rounded-full border"
                 width={40}
                 height={40}
-                
+
               />
-              
+
               {/* Hover Name Tooltip */}
               <span className="absolute left-1/2 -translate-x-1/2 
               bottom-[-30px] bg-black text-white text-xs px-2 py-1 rounded 
@@ -94,8 +93,8 @@ export default function Navbar() {
         ) : (
           /* Not Logged In Mode */
           <div className="flex gap-2">
-            <Link href="/signin" className="btn btn-sm">Sign In</Link>
-            <Link href="/signup" className="btn btn-sm btn-primary">Sign Up</Link>
+            <Link href="/login" className="btn btn-sm">Sign In</Link>
+            <Link href="/register" className="btn btn-sm btn-primary">Sign Up</Link>
           </div>
         )}
 
