@@ -4,6 +4,7 @@ Course Master Frontend
 Overview
 CourseMaster is a modern, responsive E-learning platform frontend built with Next.js 14 (App Router), TypeScript, and Redux Toolkit. The application provides an intuitive interface for students to browse, enroll in, and consume courses, while offering administrators robust tools for course management.
 
+Live URL : [https://course-master-ph.vercel.app]
 
 Features
 🎓 Course Browsing: Server-side pagination, filtering, and searching
