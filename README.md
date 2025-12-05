@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Course Master Frontend
 
-## Getting Started
 
-First, run the development server:
+Overview
+CourseMaster is a modern, responsive E-learning platform frontend built with Next.js 14 (App Router), TypeScript, and Redux Toolkit. The application provides an intuitive interface for students to browse, enroll in, and consume courses, while offering administrators robust tools for course management.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Features
+🎓 Course Browsing: Server-side pagination, filtering, and searching
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+🔐 Authentication: JWT-based login/registration with persistent sessions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📱 Responsive Design: Mobile-first approach with Tailwind CSS
 
-## Learn More
+📊 Student Dashboard: Progress tracking, enrolled courses, assignments
 
-To learn more about Next.js, take a look at the following resources:
+🎥 Course Player: Video lectures with progress tracking
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📝 Assignments & Quizzes: Interactive submission and grading
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+👑 Admin Panel: Course CRUD, enrollment management, analytics
 
-## Deploy on Vercel
+🌙 Dark/Light Mode: Theme toggle support
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Tech Stack
+Framework: Next.js 14 (App Router)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Language: TypeScript
+
+Styling: Tailwind CSS
+
+State Management: Redux Toolkit
+
+Forms: React Hook Form with Zod validation
+
+Charts: Recharts (for analytics)
+
+Icons: Lucide React
+
+HTTP Client: Axios with interceptors
+
+
+Project Structure
+
+text
+
+src/
+├── app/                    # Next.js App Router pages
+│   ├── (auth)/            # Authentication routes
+│   ├── (dashboard)/       # Protected dashboard routes
+│   │   ├── student/       # Student dashboard
+│   │   └── admin/         # Admin dashboard
+│   ├── courses/           # Course listing and details
+│   ├── api/               # Next.js API routes
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Home page
+├── components/            # Reusable components
+│   ├── common/            # Button, Input, Modal, etc.
+│   ├── courses/           # CourseCard, CourseFilters, etc.
+│   ├── dashboard/         # Dashboard-specific components
+│   ├── layout/            # Header, Footer, Sidebar
+│   └── ui/                # UI primitives
+├── lib/                   # Utility functions
+│   ├── api/              # Axios configuration
+│   ├── auth/             # Authentication helpers
+│   ├── constants/        # App constants
+│   └── utils/            # Helper functions
+├── store/                # Redux store
+│   ├── slices/           # Redux slices
+│   └── store.ts          # Store configuration
+├── types/                # TypeScript interfaces
+└── styles/              # Global styles
+Getting Started
+Prerequisites
+Node.js 18+
+
+npm or yarn
+
+Backend server running (see backend README)

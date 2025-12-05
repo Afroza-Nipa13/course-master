@@ -46,7 +46,7 @@ export default function CoursesClient() {
       });
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/courses?${params}`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/courses?${params.id}`
       );
       
       const data = await response.json();
@@ -56,7 +56,7 @@ export default function CoursesClient() {
         setPagination(data.pagination);
         setFilters(data.filters);
 
-        router.push(`/courses?${params}`, { scroll: false });
+        router.push(`/courses?${params.id}`, { scroll: false });
       } else {
         setError(data.message);
       }
